@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronic Music Artist | Dub Techno Producer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(20, 20, 20, 0.95);
+            padding: 2rem 0;
+            border-bottom: 1px solid #404040;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%);
+            border-bottom: 2px solid #404040;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #00d4ff;
+            background: transparent;
+            color: #00d4ff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #00d4ff;
+            color: #1a1a1a;
+        }
+
+        .btn-primary {
+            background: #00d4ff;
+            color: #1a1a1a;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: #00d4ff;
+        }
+
+        /* Latest Release Section */
+        .latest-release {
+            padding: 4rem 2rem;
+            background: #0f0f0f;
+            border-bottom: 2px solid #404040;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #00d4ff;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .release-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .bandcamp-container {
+            background: #1a1a1a;
+            padding: 2rem;
+            border: 1px solid #404040;
+            border-radius: 4px;
+        }
+
+        .bandcamp-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            border: 2px dashed #00d4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00d4ff;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .release-info h3 {
+            font-size: 1.8rem;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .release-info p {
+            color: #b0b0b0;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* Gear List Section */
+        .gear-section {
+            padding: 4rem 2rem;
+            background: #1a1a1a;
+            border-bottom: 2px solid #404040;
+        }
+
+        .gear-table {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            border-collapse: collapse;
+            background: #0f0f0f;
+            border: 1px solid #404040;
+        }
+
+        .gear-table thead {
+            background: #00d4ff;
+            color: #1a1a1a;
+        }
+
+        .gear-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .gear-table td {
+            padding: 1rem;
+            border-top: 1px solid #404040;
+            color: #e0e0e0;
+        }
+
+        .gear-table tbody tr:hover {
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .gear-table .category {
+            color: #00d4ff;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(20, 20, 20, 0.95);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #404040;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: #00d4ff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ff006e;
+        }
+
+        footer p {
+            color: #707070;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .release-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .gear-table {
+                font-size: 0.85rem;
+            }
+
+            .gear-table th,
+            .gear-table td {
+                padding: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">ARTIST</div>
+                <ul class="nav-links">
+                    <li><a href="#releases">Releases</a></li>
+                    <li><a href="#gear">Gear</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Dub Techno Vibes</h1>
+            <p>Deep, hypnotic electronic music from the shadows of minimal production</p>
+            <div class="cta-buttons">
+                <a href="#releases" class="btn btn-primary">Latest Release</a>
+                <a href="#contact" class="btn">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Release Section -->
+    <section class="latest-release" id="releases">
+        <div class="container">
+            <h2 class="section-title">Latest Release</h2>
+            <div class="release-content">
+                <div class="bandcamp-container">
+                    <div class="bandcamp-placeholder">
+                        <!-- Replace this with your Bandcamp embed code -->
+                        [Insert Bandcamp Player Here]
+                    </div>
+                </div>
+                <div class="release-info">
+                    <h3>Release Title</h3>
+                    <p>
+                        Describe your latest release here. Talk about the inspiration, the production process, and what makes this work special. This section tells your story and connects with listeners on a deeper level.
+                    </p>
+                    <p>
+                        Deep dub techno with hypnotic basslines and minimalist percussion. Perfect for late-night sessions and introspective moments.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gear List Section -->
+    <section class="gear-section" id="gear">
+        <div class="container">
+            <h2 class="section-title">Studio Gear</h2>
+            <table class="gear-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Equipment</th>
+                        <th>Model</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="category">Drum Machine</td>
+                        <td>Elektron Rytm MK2</td>
+                        <td>Analog Drums</td>
+                        <td>Primary percussion & rhythm sequencing</td>
+                    </tr>
+                    <tr>
+                        <td class="category">Synthesizer</td>
+                        <td>Elektron Analog4 MK2</td>
+                        <td>4-Voice Analog</td>
+                        <td>Bass & melodic elements</td>
+                    </tr>
+                    <tr>
+                        <td class="category">Sampler</td>
+                        <td>Elektron Digitakt</td>
+                        <td>8-Track Sampler</td>
+                        <td>Drum samples & texture layers</td>
+                    </tr>
+                    <tr>
+                        <td class="category">Synthesizer</td>
+                        <td>Elektron Digitone</td>
+                        <td>8-Voice FM</td>
+                        <td>FM synthesis & atmospheric pads</td>
+                    </tr>
+                    <tr>
+                        <td class="category">Sequencer</td>
+                        <td>Elektron Hapax</td>
+                        <td>16-Track MIDI</td>
+                        <td>Master sequencer & pattern arranger</td>
+                    </tr>
+                    <tr>
+                        <td class="category">Controller</td>
+                        <td>Ableton Push 3</td>
+                        <td>Performance Controller</td>
+                        <td>DAW control & clip launching</td>
+                    </tr>
+                    <tr>
+                        <td class="category">DAW</td>
+                        <td>Ableton Live</td>
+                        <td>Suite</td>
+                        <td>Mixing & arrangement</td>
+                    </tr>
+                    <tr>
+                        <td class="category">Audio Interface</td>
+                        <td>Expert Choice</td>
+                        <td>Multi-In/Out</td>
+                        <td>Hardware-software integration</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <h3 style="color: #00d4ff; margin-bottom: 1.5rem; text-transform: uppercase;">Get in Touch</h3>
+            <div class="social-links">
+                <a href="#" class="social-link">SoundCloud</a>
+                <a href="#" class="social-link">Bandcamp</a>
+                <a href="#" class="social-link">Instagram</a>
+                <a href="#" class="social-link">Email</a>
+            </div>
+            <p>&copy; 2025 Your Artist Name. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

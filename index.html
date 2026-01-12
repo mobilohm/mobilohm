@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobilohm - Electronic Music Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin: 40px 0 60px 0;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            color: #888;
+            letter-spacing: 3px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .genre-cell {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border: 2px solid #444;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .genre-cell:hover {
+            transform: scale(1.05);
+            border-color: #00d4ff;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .genre-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .genre-cell:hover img {
+            opacity: 0.7;
+        }
+
+        .genre-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 60%, transparent 100%);
+            padding: 20px;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .genre-cell:hover .genre-overlay {
+            transform: translateY(-5px);
+        }
+
+        .genre-title {
+            font-size: 1.4em;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .genre-subtitle {
+            font-size: 0.9em;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        /* News/Updates Section */
+        .news-section {
+            max-width: 1400px;
+            width: 100%;
+            margin: 80px auto 40px auto;
+        }
+
+        .section-header {
+            font-size: 2em;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid #444;
+            padding-bottom: 15px;
+        }
+
+        .news-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #444;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .news-table thead {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .news-table th {
+            padding: 15px;
+            text-align: left;
+            color: #00d4ff;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #444;
+        }
+
+        .news-table td {
+            padding: 20px 15px;
+            border-bottom: 1px solid #333;
+            vertical-align: top;
+        }
+
+        .news-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .news-table tr:hover {
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .news-date {
+            color: #00d4ff;
+            font-weight: bold;
+            white-space: nowrap;
+            width: 120px;
+        }
+
+        .news-category {
+            color: #888;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            white-space: nowrap;
+            width: 130px;
+        }
+
+        .news-content {
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .news-content strong {
+            color: #00d4ff;
+        }
+
+        .news-content a {
+            color: #00d4ff;
+            text-decoration: none;
+            border-bottom: 1px dotted #00d4ff;
+        }
+
+        .news-content a:hover {
+            color: #fff;
+            border-bottom: 1px solid #fff;
+        }
+
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+                letter-spacing: 4px;
+            }
+
+            .genre-title {
+                font-size: 1.1em;
+            }
+
+            .section-header {
+                font-size: 1.5em;
+            }
+
+            .news-table {
+                font-size: 0.9em;
+            }
+
+            .news-table th,
+            .news-table td {
+                padding: 10px;
+            }
+
+            /* Stack table on mobile */
+            .news-table thead {
+                display: none;
+            }
+
+            .news-table tr {
+                display: block;
+                margin-bottom: 20px;
+                border: 1px solid #444;
+                border-radius: 8px;
+                padding: 15px;
+            }
+
+            .news-table td {
+                display: block;
+                border: none;
+                padding: 5px 0;
+            }
+
+            .news-date,
+            .news-category {
+                width: auto;
+                display: inline-block;
+                margin-right: 15px;
+            }
+
+            .news-content {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mobil'Ohm</h1>
+        <p class="tagline">Electronic Music Exploration</p>
+    </header>
+
+    <div class="grid-container">
+        <!-- Cell 1: Dub Techno -->
+        <a href="dub-techno.html" class="genre-cell">
+            <img src="images/dub-techno.jpg" alt="Dub Techno">
+            <div class="genre-overlay">
+                <div class="genre-title">Dub Techno</div>
+                <div class="genre-subtitle">Deep • Atmospheric</div>
+            </div>
+        </a>
+
+        <!-- Cell 2: Forest -->
+        <a href="forest.html" class="genre-cell">
+            <img src="images/forest.jpg" alt="Forest">
+            <div class="genre-overlay">
+                <div class="genre-title">Psy Forest</div>
+                <div class="genre-subtitle">Organic • Psychedelic</div>
+            </div>
+        </a>
+
+        <!-- Cell 3: Ambient -->
+        <a href="ambient.html" class="genre-cell">
+            <img src="images/ambient.jpg" alt="Ambient">
+            <div class="genre-overlay">
+                <div class="genre-title">Ambient</div>
+                <div class="genre-subtitle">Textural • Meditative</div>
+            </div>
+        </a>
+
+        <!-- Cell 4: Techno -->
+        <a href="techno.html" class="genre-cell">
+            <img src="images/techno.jpg" alt="Techno">
+            <div class="genre-overlay">
+                <div class="genre-title">Techno</div>
+                <div class="genre-subtitle">Driving • Hypnotic</div>
+            </div>
+        </a>
+
+        <!-- Cell 5: Downtempo -->
+        <a href="downtempo.html" class="genre-cell">
+            <img src="images/downtempo.jpg" alt="Downtempo">
+            <div class="genre-overlay">
+                <div class="genre-title">Downtempo</div>
+                <div class="genre-subtitle">Chilled • Groovy</div>
+            </div>
+        </a>
+
+        <!-- Cell 6: Experimental -->
+        <a href="experimental.html" class="genre-cell">
+            <img src="images/experimental.jpg" alt="Experimental">
+            <div class="genre-overlay">
+                <div class="genre-title">Experimental</div>
+                <div class="genre-subtitle">Abstract • Evolving</div>
+            </div>
+        </a>
+
+        <!-- Cell 7: Live Sessions -->
+        <a href="live.html" class="genre-cell">
+            <img src="images/live.jpg" alt="Live Sessions">
+            <div class="genre-overlay">
+                <div class="genre-title">Live Sets</div>
+                <div class="genre-subtitle">Performance • Raw</div>
+            </div>
+        </a>
+
+        <!-- Cell 8: Studio -->
+        <a href="studio.html" class="genre-cell">
+            <img src="images/studio.jpg" alt="Studio">
+            <div class="genre-overlay">
+                <div class="genre-title">Studio</div>
+                <div class="genre-subtitle">Gear • Process</div>
+            </div>
+        </a>
+    </div>
+
+    <!-- News/Updates Section -->
+    <section class="news-section">
+        <h2 class="section-header">Updates & News</h2>
+        <table class="news-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example entries - customize as needed -->
+                <tr>
+                    <td class="news-date">Jan 10, 2026</td>
+                    <td class="news-category">Announcement</td>
+                    <td class="news-content">
+                        <strong>Website Launch!</strong> Welcome to the new Mobil'Ohm home. Explore different genres and stay tuned for upcoming releases.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="news-date">Jan 15, 2026</td>
+                    <td class="news-category">Event</td>
+                    <td class="news-content">
+                        <strong>Live Set @ [Venue Name]</strong> - Performing a 2-hour dub techno journey. Tickets: <a href="#">link here</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="news-date">Jan 18, 2026</td>
+                    <td class="news-category">Release</td>
+                    <td class="news-content">
+                        <strong>New EP: "Deep Currents"</strong> dropping on Bandcamp. Four tracks of immersive dub techno exploring aquatic themes.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="news-date">Jan 20, 2026</td>
+                    <td class="news-category">Gear Sale</td>
+                    <td class="news-content">
+                        <strong>For Sale:</strong> Ableton Push 2 in excellent condition. €350. Contact: <a href="mailto:info@mobilohm.com">info@mobilohm.com</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="news-date">Jan 25, 2026</td>
+                    <td class="news-category">Blog</td>
+                    <td class="news-content">
+                        <strong>Studio Notes:</strong> Exploring new patch techniques with the Elektron Analog4 MK2. Creating evolving basslines using parameter locks and LFO modulation.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Mobil'Ohm | Electronic Music Project</p>
+    </footer>
+</body>
+</html>

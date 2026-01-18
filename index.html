@@ -280,6 +280,66 @@
                 font-size: 2em;
             }
         }
+
+        /* Newsletter Section */
+.newsletter-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.newsletter-form .form-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.newsletter-form input[type="email"],
+.newsletter-form input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+}
+
+.newsletter-form input::placeholder {
+    color: #999;
+}
+
+.newsletter-form button {
+    padding: 12px 30px;
+    background: #2d2d2d;
+    color: #e0e0e0;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+    transition: all 0.3s;
+}
+
+.newsletter-form button:hover {
+    background: #e0e0e0;
+    color: #2d2d2d;
+}
+
+@media (max-width: 480px) {
+    .newsletter-form .form-row {
+        flex-direction: column;
+    }
+    
+    .newsletter-form input[type="email"],
+    .newsletter-form input[type="text"],
+    .newsletter-form button {
+        width: 100%;
+    }
+}
     </style>
 </head>
 <body>
@@ -413,6 +473,26 @@
             </tbody>
         </table>
     </section>
+
+    <!-- Newsletter Signup Section -->
+<section class="newsletter-section">
+    <form action="https://zcv2-zcmp.maillist-manage.eu/weboptin.zc" method="POST" accept-charset="UTF-8" class="newsletter-form">
+        <input type="hidden" name="zc_gad" value="">
+        <input type="hidden" name="zcvers" value="2.0">
+        <input type="hidden" name="oldListIds" value="">
+        <input type="hidden" name="targetListIds" value="">
+        <input type="hidden" name="od" value="2ba7f1d6466">
+        <input type="hidden" name="zx" value="4aebfdce8">
+        <input type="hidden" name="tD" value="3bfea3145277541">
+        <input type="hidden" name="sD" value="3bfea3145277705">
+        
+        <div class="form-row">
+            <input type="email" name="CONTACT_EMAIL" placeholder="Enter your email" required>
+            <input type="text" name="FIRSTNAME" placeholder="Your name">
+            <button type="submit">Join the adventure</button>
+        </div>
+    </form>
+</section>
 
     <footer>
         <p>&copy; 2026 Mobil'Ohm | Electronic Music Project</p>
